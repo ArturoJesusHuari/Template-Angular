@@ -1,0 +1,182 @@
+<div class="forms-container">
+  <header class="page-header">
+    <h1 class="page-title">Configuración de Perfil</h1>
+    <p class="page-subtitle">Gestione la información técnica y financiera del usuario.</p>
+  </header>
+
+  <!-- FORMULARIO PRINCIPAL -->
+  <app-card
+    title="Editor de Entidad"
+    subtitle="Complete los campos requeridos para la normalización de datos."
+  >
+    <form [formGroup]="mainForm" (ngSubmit)="onSubmit()" class="form-grid">
+      <!-- SECCIÓN: DATOS PERSONALES -->
+      <div class="form-section">
+        <div class="section-header">
+          <h3 class="section-title"><mat-icon>person</mat-icon> Identidad</h3>
+        </div>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Nombre Completo</mat-label>
+          <input matInput formControlName="fullName" placeholder="Ej: Juan Pérez" />
+          @if (mainForm.get('fullName')?.hasError('required') && mainForm.get('fullName')?.touched)
+          {
+          <mat-error>El nombre es requerido</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Email Corporativo</mat-label>
+          <input matInput formControlName="email" type="email" placeholder="ejemplo@empresa.com" />
+          @if (mainForm.get('email')?.hasError('required') && mainForm.get('email')?.touched) {
+          <mat-error>El email es requerido</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Teléfono de Contacto</mat-label>
+          <input
+            matInput
+            formControlName="phone"
+            appPhoneInput
+            [phoneLength]="9"
+            placeholder="987654321"
+          />
+          <mat-hint>9 dígitos sin espacios</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>País</mat-label>
+          <mat-select formControlName="country">
+            @for (country of countries; track country.code) {
+            <mat-option [value]="country.code">{{ country.name }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- SECCIÓN: DATOS FINANCIEROS -->
+      <div class="form-section">
+        <div class="section-header">
+          <h3 class="section-title"><mat-icon>payments</mat-icon> Finanzas</h3>
+        </div>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Salario Base (USD)</mat-label>
+          <input matInput formControlName="salary" appMoneyInput placeholder="0.00" />
+          <mat-icon matPrefix style="margin-right: 8px; opacity: 0.5">attach_money</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Precio de Venta</mat-label>
+          <input matInput formControlName="productPrice" appMoneyInput placeholder="0.00" />
+          <mat-icon matPrefix style="margin-right: 8px; opacity: 0.5">local_offer</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Edad</mat-label>
+          <input matInput formControlName="age" appIntegerInput placeholder="25" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Peso (KG)</mat-label>
+          <input matInput formControlName="weight" appNumericInput placeholder="75.5" />
+        </mat-form-field>
+      </div>
+
+      <!-- SECCIÓN: CATEGORÍAS Y TÉRMINOS -->
+      <div class="form-section form-section-full">
+        <div class="section-header">
+          <h3 class="section-title"><mat-icon>rule</mat-icon> Clasificación y Cumplimiento</h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Categorías Asignadas</mat-label>
+            <mat-select formControlName="categories" multiple>
+              @for (category of categories; track category.id) {
+              <mat-option [value]="category.id">{{ category.name }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <div class="flex flex-col gap-4">
+            <mat-checkbox formControlName="acceptTerms">
+              Acepto los términos de servicio
+            </mat-checkbox>
+            <mat-checkbox formControlName="newsletter">
+              Suscribirse al boletín técnico
+            </mat-checkbox>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTONES DE ACCIÓN -->
+      <div class="form-actions">
+        <button
+          mat-stroked-button
+          type="button"
+          (click)="resetForm()"
+          [disabled]="isSubmitting"
+          class="reset-button"
+        >
+          Descartar Cambios
+        </button>
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          [disabled]="!mainForm.valid || isSubmitting"
+          class="submit-button"
+        >
+          @if (isSubmitting) {
+          <mat-spinner diameter="20" style="margin-right: 8px; display: inline-block"></mat-spinner>
+          <span>Procesando...</span>
+          } @else {
+          <div class="flex items-center gap-2">
+            <mat-icon>save</mat-icon>
+            <span>Guardar Cambios</span>
+          </div>
+          }
+        </button>
+      </div>
+    </form>
+
+    <!-- RESUMEN DE DATOS (MODO LECTURA) -->
+    @if (submittedData) {
+    <div class="submitted-data-card p-6 mt-8 bg-surface border-subtle rounded-lg">
+      <div class="flex items-center gap-2 mb-4 text-green-500">
+        <mat-icon>check_circle</mat-icon>
+        <h3 class="font-bold">Datos Normalizados Correctamente</h3>
+      </div>
+
+      <div class="data-grid">
+        <div class="data-item">
+          <span class="data-label">Identidad</span>
+          <span class="data-value">{{ submittedData.fullName }}</span>
+        </div>
+        <div class="data-item">
+          <span class="data-label">Email</span>
+          <span class="data-value">{{ submittedData.email }}</span>
+        </div>
+        <div class="data-item">
+          <span class="data-label">Contacto</span>
+          <span class="data-value">+51 {{ submittedData.phone }}</span>
+        </div>
+        <div class="data-item">
+          <span class="data-label">Compensación</span>
+          <span class="data-value">{{ submittedData.salary | currency }}</span>
+        </div>
+        <div class="data-item">
+          <span class="data-label">Precio</span>
+          <span class="data-value">{{ submittedData.productPrice | currency }}</span>
+        </div>
+        <div class="data-item">
+          <span class="data-label">Clasificación</span>
+          <span class="data-value">{{ getCategoryNames(submittedData.categories) }}</span>
+        </div>
+      </div>
+    </div>
+    }
+  </app-card>
+</div>
