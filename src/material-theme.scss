@@ -266,24 +266,38 @@ body {
 // MENÚS Y OVERLAYS (ESTILO SUPABASE)
 // ========================================
 
-// Selector ultra-robusto para el panel del menú (MDC y no-MDC)
+// Selector ultra-robusto para el panel del menú y select panels (MDC y no-MDC)
 .mat-mdc-menu-panel,
 .mat-menu-panel,
 .mdc-menu-surface.mat-mdc-menu-panel,
-.mat-mdc-menu-panel.mat-mdc-menu-panel {
-  background-color: #1a1a1a !important; // Valor hardcoded para descartar problemas de variables
+.mat-mdc-menu-panel.mat-mdc-menu-panel,
+.mat-mdc-select-panel,
+.mat-select-panel {
+  background-color: #1a1a1a !important; 
   background: #1a1a1a !important;
   border: 1px solid var(--border-subtle) !important;
   box-shadow: var(--shadow-lg) !important;
   border-radius: 12px !important;
   min-width: 180px !important;
-  overflow: hidden !important;
 
   // Tokens de Material y MDC
   --mdc-menu-container-color: #1a1a1a !important;
   --mat-menu-container-color: #1a1a1a !important;
   --mat-sys-surface: #1a1a1a !important;
   --mdc-menu-surface-container-color: #1a1a1a !important;
+  --mat-select-panel-background-color: #1a1a1a !important;
+}
+
+// Estilos específicos para Form Fields (Inputs y Selects)
+.mat-mdc-form-field {
+  --mdc-outlined-text-field-container-color: var(--bg-input) !important;
+  --mdc-outlined-text-field-focus-outline-color: var(--accent-primary) !important;
+  --mdc-outlined-text-field-outline-color: var(--border-subtle) !important;
+  
+  // Asegurar que el fondo no sea transparente
+  .mat-mdc-text-field-wrapper {
+    background-color: var(--bg-input) !important;
+  }
 }
 
 // Asegurar que el contenido también tenga el fondo
@@ -340,4 +354,28 @@ body {
   border-top-color: var(--border-subtle) !important;
   margin: 4px 0 !important;
 }
+
+// Asegurar que los overlays (snackbars, dialogs) estén por encima del header
+.cdk-overlay-container {
+  z-index: 2000 !important;
+}
+
+// Estilos para SnackBars
+.snackbar-success {
+  --mdc-snackbar-container-color: #001f0f !important;
+  --mdc-snackbar-supporting-text-color: #3dc57f !important;
+  --mat-snack-bar-button-color: #3dc57f !important;
+  background-color: #3dc57f !important;
+  border: 1px solid #005230 !important;
+}
+
+.snackbar-error {
+  --mdc-snackbar-container-color: #1f0a0a !important;
+  --mdc-snackbar-supporting-text-color: #ff5555 !important;
+  --mat-snack-bar-button-color: #ff5555 !important;
+  background-color: #ff5555 !important;
+  border: 1px solid #520000 !important;
+}
+
+
 

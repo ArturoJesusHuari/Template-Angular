@@ -2,7 +2,9 @@
   <!-- Header -->
   <header class="mb-10 max-w-7xl mx-auto">
     <h1 class="text-3xl font-bold text-white tracking-tight mb-2">Configuración Entidad</h1>
-    <p class="text-[#a0a0a0] text-sm">Gestión centralizada de perfiles y normalización de parámetros del sistema.</p>
+    <p class="text-[#a0a0a0] text-sm">
+      Gestión centralizada de perfiles y normalización de parámetros del sistema.
+    </p>
   </header>
 
   <div class="max-w-7xl mx-auto">
@@ -16,11 +18,13 @@
         <div class="bg-[#0d0d0d] p-6 rounded-2xl border border-[#1f1f1f] space-y-8">
           <div class="flex items-center gap-3">
             <div class="p-2 rounded-lg bg-[#3ecf8e]/10">
-                <mat-icon class="text-[#3ecf8e]">person</mat-icon>
+              <mat-icon class="text-[#3ecf8e]">person</mat-icon>
             </div>
             <div>
-                <h3 class="text-base font-bold text-white">Protocolo de Identidad</h3>
-                <p class="text-[10px] text-[#707070] uppercase tracking-wider">Información básica del operador</p>
+              <h3 class="text-base font-bold text-white">Protocolo de Identidad</h3>
+              <p class="text-[10px] text-[#707070] uppercase tracking-wider">
+                Información básica del operador
+              </p>
             </div>
           </div>
 
@@ -28,17 +32,23 @@
             <mat-form-field appearance="outline" class="w-full">
               <mat-label>Nombre Completo</mat-label>
               <input matInput formControlName="fullName" placeholder="Ej: Juan Pérez" />
-              @if (mainForm.get('fullName')?.hasError('required') && mainForm.get('fullName')?.touched)
-              {
-              <mat-error>El nombre es requerido</mat-error>
+              @if (
+                mainForm.get('fullName')?.hasError('required') && mainForm.get('fullName')?.touched
+              ) {
+                <mat-error>El nombre es requerido</mat-error>
               }
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="w-full">
               <mat-label>Email Corporativo</mat-label>
-              <input matInput formControlName="email" type="email" placeholder="ejemplo@empresa.com" />
+              <input
+                matInput
+                formControlName="email"
+                type="email"
+                placeholder="ejemplo@empresa.com"
+              />
               @if (mainForm.get('email')?.hasError('required') && mainForm.get('email')?.touched) {
-              <mat-error>El email es requerido</mat-error>
+                <mat-error>El email es requerido</mat-error>
               }
             </mat-form-field>
 
@@ -58,87 +68,96 @@
               <mat-label>País de Origen</mat-label>
               <mat-select formControlName="country">
                 @for (country of countries; track country.code) {
-                <mat-option [value]="country.code">{{ country.name }}</mat-option>
+                  <mat-option [value]="country.code">{{ country.name }}</mat-option>
                 }
               </mat-select>
             </mat-form-field>
+
+            <app-datepicker
+              label="Fecha de Nacimiento"
+              formControlName="birthDate"
+              hint="Formato requerido: DD/MM/YYYY"
+            ></app-datepicker>
           </div>
         </div>
 
         <!-- SECCIÓN: FINANZAS -->
         <div class="bg-[#0d0d0d] p-6 rounded-2xl border border-[#1f1f1f] space-y-8">
-            <div class="flex items-center gap-3">
-              <div class="p-2 rounded-lg bg-blue-400/10">
-                  <mat-icon class="text-blue-400">payments</mat-icon>
-              </div>
-              <div>
-                  <h3 class="text-base font-bold text-white">Métricas Financieras</h3>
-                  <p class="text-[10px] text-[#707070] uppercase tracking-wider">Parámetros de compensación y costes</p>
-              </div>
+          <div class="flex items-center gap-3">
+            <div class="p-2 rounded-lg bg-blue-400/10">
+              <mat-icon class="text-blue-400">payments</mat-icon>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-              <mat-form-field appearance="outline" class="w-full">
-                <mat-label>Salario Base (USD)</mat-label>
-                <input matInput formControlName="salary" appMoneyInput placeholder="0.00" />
-                <mat-icon matPrefix class="mr-2 opacity-50">attach_money</mat-icon>
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="w-full">
-                <mat-label>Precio Unitario</mat-label>
-                <input matInput formControlName="productPrice" appMoneyInput placeholder="0.00" />
-                <mat-icon matPrefix class="mr-2 opacity-50">local_offer</mat-icon>
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="w-full">
-                <mat-label>Edad Cronológica</mat-label>
-                <input matInput formControlName="age" appIntegerInput placeholder="25" />
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="w-full">
-                <mat-label>Masa (KG)</mat-label>
-                <input matInput formControlName="weight" appNumericInput placeholder="75.5" />
-              </mat-form-field>
+            <div>
+              <h3 class="text-base font-bold text-white">Métricas Financieras</h3>
+              <p class="text-[10px] text-[#707070] uppercase tracking-wider">
+                Parámetros de compensación y costes
+              </p>
             </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Salario Base (USD)</mat-label>
+              <input matInput formControlName="salary" appMoneyInput placeholder="0.00" />
+              <mat-icon matPrefix class="mr-2 opacity-50">attach_money</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Precio Unitario</mat-label>
+              <input matInput formControlName="productPrice" appMoneyInput placeholder="0.00" />
+              <mat-icon matPrefix class="mr-2 opacity-50">local_offer</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Edad Cronológica</mat-label>
+              <input matInput formControlName="age" appIntegerInput placeholder="25" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Masa (KG)</mat-label>
+              <input matInput formControlName="weight" appNumericInput placeholder="75.5" />
+            </mat-form-field>
+          </div>
         </div>
 
         <!-- SECCIÓN: CUMPLIMIENTO -->
         <div class="bg-[#0d0d0d] p-6 rounded-2xl border border-[#1f1f1f] space-y-8">
-            <div class="flex items-center gap-3">
-              <div class="p-2 rounded-lg bg-purple-400/10">
-                  <mat-icon class="text-purple-400">rule</mat-icon>
-              </div>
-              <div>
-                  <h3 class="text-base font-bold text-white">Cumplimiento & Tags</h3>
-                  <p class="text-[10px] text-[#707070] uppercase tracking-wider">Clasificación y términos legales</p>
-              </div>
+          <div class="flex items-center gap-3">
+            <div class="p-2 rounded-lg bg-purple-400/10">
+              <mat-icon class="text-purple-400">rule</mat-icon>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-              <mat-form-field appearance="outline" class="w-full">
-                <mat-label>Categorías Asignadas</mat-label>
-                <mat-select formControlName="categories" multiple>
-                  @for (category of categories; track category.id) {
-                  <mat-option [value]="category.id">{{ category.name }}</mat-option>
-                  }
-                </mat-select>
-              </mat-form-field>
-
-              <div class="flex flex-col gap-3 justify-center">
-                <mat-checkbox formControlName="acceptTerms" class="!text-white">
-                  <span class="text-sm">Acepto los términos de servicio Nexus</span>
-                </mat-checkbox>
-                <mat-checkbox formControlName="newsletter" class="!text-white">
-                  <span class="text-sm">Suscribirse al boletín técnico semanal</span>
-                </mat-checkbox>
-              </div>
+            <div>
+              <h3 class="text-base font-bold text-white">Cumplimiento & Tags</h3>
+              <p class="text-[10px] text-[#707070] uppercase tracking-wider">
+                Clasificación y términos legales
+              </p>
             </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+            <app-select
+              label="Categorías Asignadas"
+              formControlName="categories"
+              [options]="categories"
+              [multiple]="true"
+            ></app-select>
+
+            <div class="flex flex-col gap-3 justify-center">
+              <mat-checkbox formControlName="acceptTerms" class="!text-white">
+                <span class="text-sm">Acepto los términos de servicio Nexus</span>
+              </mat-checkbox>
+              <mat-checkbox formControlName="newsletter" class="!text-white">
+                <span class="text-sm">Suscribirse al boletín técnico semanal</span>
+              </mat-checkbox>
+            </div>
+          </div>
         </div>
 
         <!-- BOTONES DE ACCIÓN -->
         <div class="flex flex-col sm:flex-row gap-4 pt-4">
           <app-button
             variant="outline"
+            size="lg"
             type="button"
             (click)="resetForm()"
             [disabled]="isSubmitting"
@@ -146,7 +165,7 @@
           >
             Descartar Cambios
           </app-button>
-          
+
           <app-button
             variant="primary"
             type="submit"
@@ -163,45 +182,60 @@
 
       <!-- RESUMEN DE DATOS -->
       @if (submittedData) {
-      <div class="mt-12 p-8 bg-gradient-to-br from-[#111111] to-[#0d0d0d] border border-[#1f1f1f] rounded-2xl relative overflow-hidden">
-        <div class="absolute top-0 right-0 p-4">
+        <div
+          class="mt-12 p-8 bg-gradient-to-br from-[#111111] to-[#0d0d0d] border border-[#1f1f1f] rounded-2xl relative overflow-hidden"
+        >
+          <div class="absolute top-0 right-0 p-4">
             <mat-icon class="text-[#3ecf8e] opacity-20 scale-[4]">check_circle</mat-icon>
-        </div>
+          </div>
 
-        <div class="flex items-center gap-2 mb-8 text-[#3ecf8e]">
-          <mat-icon>verified</mat-icon>
-          <h3 class="font-bold text-lg tracking-tight">Sincronización Exitosa</h3>
-        </div>
+          <div class="flex items-center gap-2 mb-8 text-[#3ecf8e]">
+            <mat-icon>verified</mat-icon>
+            <h3 class="font-bold text-lg tracking-tight">Sincronización Exitosa</h3>
+          </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="flex flex-col gap-1">
-            <span class="text-[10px] text-[#707070] uppercase font-bold tracking-widest">Operador</span>
-            <span class="text-sm text-white font-medium">{{ submittedData.fullName }}</span>
-          </div>
-          <div class="flex flex-col gap-1">
-            <span class="text-[10px] text-[#707070] uppercase font-bold tracking-widest">Canal de Enlace</span>
-            <span class="text-sm text-white font-medium">{{ submittedData.email }}</span>
-          </div>
-          <div class="flex flex-col gap-1">
-            <span class="text-[10px] text-[#707070] uppercase font-bold tracking-widest">Compensación</span>
-            <span class="text-sm text-[#3ecf8e] font-mono font-bold">{{ submittedData.salary | currency }}</span>
-          </div>
-          <div class="flex flex-col gap-1">
-            <span class="text-[10px] text-[#707070] uppercase font-bold tracking-widest">Valor de Activo</span>
-            <span class="text-sm text-white font-mono">{{ submittedData.productPrice | currency }}</span>
-          </div>
-          <div class="flex flex-col gap-1 lg:col-span-2">
-            <span class="text-[10px] text-[#707070] uppercase font-bold tracking-widest">Clusters Asignados</span>
-            <div class="flex flex-wrap gap-2 mt-1">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="flex flex-col gap-1">
+              <span class="text-[10px] text-[#707070] uppercase font-bold tracking-widest"
+                >Operador</span
+              >
+              <span class="text-sm text-white font-medium">{{ submittedData.fullName }}</span>
+            </div>
+            <div class="flex flex-col gap-1">
+              <span class="text-[10px] text-[#707070] uppercase font-bold tracking-widest"
+                >Canal de Enlace</span
+              >
+              <span class="text-sm text-white font-medium">{{ submittedData.email }}</span>
+            </div>
+            <div class="flex flex-col gap-1">
+              <span class="text-[10px] text-[#707070] uppercase font-bold tracking-widest"
+                >Compensación</span
+              >
+              <span class="text-sm text-[#3ecf8e] font-mono font-bold">{{
+                submittedData.salary | currency
+              }}</span>
+            </div>
+            <div class="flex flex-col gap-1">
+              <span class="text-[10px] text-[#707070] uppercase font-bold tracking-widest"
+                >Valor de Activo</span
+              >
+              <span class="text-sm text-white font-mono">{{
+                submittedData.productPrice | currency
+              }}</span>
+            </div>
+            <div class="flex flex-col gap-1 lg:col-span-2">
+              <span class="text-[10px] text-[#707070] uppercase font-bold tracking-widest"
+                >Clusters Asignados</span
+              >
+              <div class="flex flex-wrap gap-2 mt-1">
                 @for (cat of getCategoryNames(submittedData.categories).split(','); track cat) {
-                    <app-badge variant="neutral" size="sm">{{ cat.trim() }}</app-badge>
+                  <app-badge variant="neutral" size="sm">{{ cat.trim() }}</app-badge>
                 }
+              </div>
             </div>
           </div>
         </div>
-      </div>
       }
     </app-card>
   </div>
 </div>
-

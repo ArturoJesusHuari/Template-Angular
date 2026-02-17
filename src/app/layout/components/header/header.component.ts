@@ -9,15 +9,22 @@ import { MatDividerModule } from '@angular/material/divider';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, MatToolbarModule, MatIconModule, MatButtonModule, MatMenuModule, MatDividerModule],
+  imports: [
+    CommonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatDividerModule,
+  ],
   template: `
     <mat-toolbar class="header">
       <span class="flex-1"></span>
-      
+
       <button mat-icon-button [matMenuTriggerFor]="notificationMenu">
         <mat-icon>notifications</mat-icon>
       </button>
-      
+
       <button mat-icon-button [matMenuTriggerFor]="userMenu">
         <mat-icon>account_circle</mat-icon>
       </button>
@@ -46,27 +53,30 @@ import { MatDividerModule } from '@angular/material/divider';
       </button>
     </mat-menu>
   `,
-  styles: [`
-    .header {
-      background-color: var(--bg-surface);
-      border-bottom: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-sm);
-      z-index: 1000;
-      padding: 0 1.5rem;
-      height: 64px !important;
-      display: flex;
-      align-items: center;
-    }
+  styles: [
+    `
+      .header {
+        position: relative;
+        z-index: 10;
+        background-color: var(--bg-surface);
+        border-bottom: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow-sm);
+        padding: 0 1.5rem;
+        height: 64px !important;
+        display: flex;
+        align-items: center;
+      }
 
-    .flex-1 {
-      flex: 1;
-    }
+      .flex-1 {
+        flex: 1;
+      }
 
-    .nav-actions {
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-    }
-  `],
+      .nav-actions {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
+    `,
+  ],
 })
 export class HeaderComponent {}

@@ -2,45 +2,199 @@
   <!-- Header -->
   <header class="mb-10 max-w-7xl mx-auto">
     <h1 class="text-3xl font-bold text-white tracking-tight mb-2">Componentes de Sistema</h1>
-    <p class="text-[#a0a0a0] text-sm">Biblioteca de componentes atómicos y patrones de diseño reutilizables.</p>
+    <p class="text-[#a0a0a0] text-sm">
+      Biblioteca de componentes atómicos y patrones de diseño reutilizables.
+    </p>
   </header>
 
   <div class="max-w-7xl mx-auto flex flex-col gap-8">
     <!-- Custom Buttons Section -->
     <app-card title="Botones (VDS)" subtitle="Variantes del sistema de diseño Nexus" class="mb-6">
-      <div class="space-y-8">
-        <!-- Primary & Secondary -->
+      <div class="space-y-10">
+        <!-- Variants -->
         <div>
-          <h3 class="text-xs font-bold text-[#707070] uppercase tracking-widest mb-4">Base & Accionables</h3>
-          <div class="flex flex-wrap gap-4">
-            <app-button variant="primary" size="sm">Pequeño</app-button>
-            <app-button variant="primary">Botón Estándar</app-button>
-            <app-button variant="primary" size="lg" icon="add">Acción Principal</app-button>
-            <app-button variant="secondary">Secundario</app-button>
-            <app-button variant="secondary" icon="refresh" iconPosition="right">Recargar</app-button>
+          <h3 class="text-sm font-bold text-[#707070] uppercase tracking-widest mb-6">Variantes</h3>
+          <div class="flex flex-wrap gap-6 items-center">
+            <div class="flex flex-col gap-2 items-center">
+              <app-button variant="primary">Primary</app-button>
+              <span class="text-[10px] text-[#707070]">Primary</span>
+            </div>
+            <div class="flex flex-col gap-2 items-center">
+              <app-button variant="secondary">Secondary</app-button>
+              <span class="text-[10px] text-[#707070]">Secondary</span>
+            </div>
+            <div class="flex flex-col gap-2 items-center">
+              <app-button variant="outline">Outline</app-button>
+              <span class="text-[10px] text-[#707070]">Outline</span>
+            </div>
+            <div class="flex flex-col gap-2 items-center">
+              <app-button variant="ghost">Ghost</app-button>
+              <span class="text-[10px] text-[#707070]">Ghost</span>
+            </div>
+            <div class="flex flex-col gap-2 items-center">
+              <app-button variant="danger">Danger</app-button>
+              <span class="text-[10px] text-[#707070]">Danger</span>
+            </div>
           </div>
         </div>
 
-        <!-- Outline & Ghost -->
+        <!-- Sizes -->
         <div>
-          <h3 class="text-xs font-bold text-[#707070] uppercase tracking-widest mb-4">Bordes & Sutiles</h3>
-          <div class="flex flex-wrap gap-4">
-            <app-button variant="outline">Contorno</app-button>
-            <app-button variant="outline" icon="settings">Configuración</app-button>
-            <app-button variant="ghost">Fantasma</app-button>
-            <app-button variant="ghost" icon="more_vert"></app-button>
+          <h3 class="text-sm font-bold text-[#707070] uppercase tracking-widest mb-6">Tamaños</h3>
+          <div class="flex flex-wrap gap-6 items-center">
+            <div class="flex flex-col gap-2 items-center">
+              <app-button variant="primary" size="sm">Small</app-button>
+              <span class="text-[10px] text-[#707070]">size="sm"</span>
+            </div>
+            <div class="flex flex-col gap-2 items-center">
+              <app-button variant="primary" size="md">Medium</app-button>
+              <span class="text-[10px] text-[#707070]">size="md"</span>
+            </div>
+            <div class="flex flex-col gap-2 items-center">
+              <app-button variant="primary" size="lg">Large Action</app-button>
+              <span class="text-[10px] text-[#707070]">size="lg"</span>
+            </div>
           </div>
         </div>
 
-        <!-- States -->
+        <!-- Icons -->
         <div>
-          <h3 class="text-xs font-bold text-[#707070] uppercase tracking-widest mb-4">Estados Dinámicos</h3>
-          <div class="flex flex-wrap gap-4">
-            <app-button variant="primary" [disabled]="true">Deshabilitado</app-button>
-            <app-button variant="primary" [loading]="true">Procesando</app-button>
-            <app-button variant="danger" icon="delete">Zona de Peligro</app-button>
-            <div class="w-full max-w-md pt-2">
-                <app-button variant="primary" [fullWidth]="true">Botón de Ancho Completo</app-button>
+          <h3 class="text-sm font-bold text-[#707070] uppercase tracking-widest mb-6">Iconos</h3>
+          <div class="flex flex-wrap gap-6 items-center">
+            <div class="flex flex-col gap-2 items-center">
+              <app-button variant="primary" icon="add">Icon Left</app-button>
+              <span class="text-[10px] text-[#707070]">default (left)</span>
+            </div>
+            <div class="flex flex-col gap-2 items-center">
+              <app-button variant="secondary" icon="arrow_forward" iconPosition="right"
+                >Icon Right</app-button
+              >
+              <span class="text-[10px] text-[#707070]">iconPosition="right"</span>
+            </div>
+            <div class="flex flex-col gap-2 items-center">
+              <app-button variant="outline" icon="settings"></app-button>
+              <span class="text-[10px] text-[#707070]">Icon Only</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive States -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div>
+            <h3 class="text-sm font-bold text-[#707070] uppercase tracking-widest mb-6">Estados</h3>
+            <div class="flex flex-wrap gap-4">
+              <app-button variant="primary" [disabled]="true">Disabled</app-button>
+              <app-button variant="primary" [loading]="true">Loading</app-button>
+              <app-button variant="secondary" [loading]="true" icon="save">Saving</app-button>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-[#707070] uppercase tracking-widest mb-6">
+              Ancho Completo
+            </h3>
+            <div class="w-full space-y-4">
+              <app-button variant="primary" [fullWidth]="true">fullWidth="true"</app-button>
+              <app-button variant="outline" [fullWidth]="true" icon="logout"
+                >Cerrar Sesión</app-button
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-card>
+
+    <!-- Datepickers Section -->
+    <app-card
+      title="Selectores de Fecha & Rango"
+      subtitle="Componentes de entrada cronológica con soporte para escritorio y touch"
+      class="mb-6"
+    >
+      <div class="space-y-10">
+        <!-- Date Pickers -->
+        <div>
+          <h3 class="text-sm font-bold text-[#707070] uppercase tracking-widest mb-6">
+            Selector Individual
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div>
+              <app-datepicker label="Fecha Estándar" placeholder="Seleccione una fecha">
+              </app-datepicker>
+              <span class="text-[10px] text-[#707070]">Uso básico</span>
+            </div>
+
+            <div>
+              <app-datepicker
+                label="Con Botones de Acción"
+                [showActions]="true"
+                hint="Requiere confirmación"
+              >
+              </app-datepicker>
+              <span class="text-[10px] text-[#707070]">[showActions]="true"</span>
+            </div>
+
+            <div>
+              <app-datepicker label="Interfaz Touch" [touchUi]="true" placeholder="Modo Diálogo">
+              </app-datepicker>
+              <span class="text-[10px] text-[#707070]">[touchUi]="true"</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Range Pickers -->
+        <div>
+          <h3 class="text-sm font-bold text-[#707070] uppercase tracking-widest mb-6">
+            Selector de Rango
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div>
+              <app-daterange-picker
+                label="Rango de Estancia"
+                hint="Seleccione fecha de entrada y salida"
+              >
+              </app-daterange-picker>
+              <span class="text-[10px] text-[#707070]">Rango básico</span>
+            </div>
+
+            <div>
+              <app-daterange-picker
+                label="Rango con Confirmación"
+                [showActions]="true"
+                [touchUi]="true"
+              >
+              </app-daterange-picker>
+              <span class="text-[10px] text-[#707070]">Actions + Touch UI</span>
+            </div>
+
+            <div>
+              <app-daterange-picker
+                label="Con Comparación"
+                [comparisonStart]="comparisonStart"
+                [comparisonEnd]="comparisonEnd"
+                hint="Gris indica periodo anterior"
+              >
+              </app-daterange-picker>
+              <span class="text-[10px] text-[#707070]">Visualización de comparación</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Limits and States -->
+        <div>
+          <h3 class="text-sm font-bold text-[#707070] uppercase tracking-widest mb-6">
+            Límites y Estados
+          </h3>
+          <div class="flex flex-wrap gap-8">
+            <div class="w-full md:w-64">
+              <app-datepicker
+                label="Rango Limitado"
+                [minDate]="minDate"
+                [maxDate]="maxDate"
+                hint="30 días disponibles"
+              >
+              </app-datepicker>
+            </div>
+            <div class="w-full md:w-64">
+              <app-datepicker label="Solo Lectura / Disabled" [disabled]="true"></app-datepicker>
             </div>
           </div>
         </div>
@@ -48,11 +202,17 @@
     </app-card>
 
     <!-- Badges Section -->
-    <app-card title="Etiquetas (Badges)" subtitle="Indicadores visuales de estado y categorización" class="mb-6">
+    <app-card
+      title="Etiquetas (Badges)"
+      subtitle="Indicadores visuales de estado y categorización"
+      class="mb-6"
+    >
       <div class="space-y-8">
         <!-- Status Badges -->
         <div>
-          <h3 class="text-xs font-bold text-[#707070] uppercase tracking-widest mb-4">Semántica de Estado</h3>
+          <h3 class="text-xs font-bold text-[#707070] uppercase tracking-widest mb-4">
+            Semántica de Estado
+          </h3>
           <div class="flex flex-wrap gap-4">
             <app-badge variant="success" icon="check_circle">Operativo</app-badge>
             <app-badge variant="error" icon="error">Crítico</app-badge>
@@ -64,7 +224,9 @@
 
         <!-- Specialized -->
         <div>
-          <h3 class="text-xs font-bold text-[#707070] uppercase tracking-widest mb-4">Colores de Categoría</h3>
+          <h3 class="text-xs font-bold text-[#707070] uppercase tracking-widest mb-4">
+            Colores de Categoría
+          </h3>
           <div class="flex flex-wrap gap-4">
             <app-badge variant="purple">Admin</app-badge>
             <app-badge variant="blue">Developer</app-badge>
@@ -74,7 +236,9 @@
 
         <!-- Sizes -->
         <div>
-          <h3 class="text-xs font-bold text-[#707070] uppercase tracking-widest mb-4">Escala Visual</h3>
+          <h3 class="text-xs font-bold text-[#707070] uppercase tracking-widest mb-4">
+            Escala Visual
+          </h3>
           <div class="flex flex-wrap items-center gap-6">
             <app-badge variant="purple" size="sm">Small Tag</app-badge>
             <app-badge variant="blue" size="md">Medium Tag</app-badge>
@@ -85,78 +249,113 @@
     </app-card>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- Interactive Elements -->
-        <div class="flex flex-col gap-8">
-            <app-card title="Diálogos & Feedback" subtitle="Modales y notificaciones">
-                <div class="flex flex-col gap-4">
-                    <app-button variant="primary" (click)="openDialog()" icon="open_in_new" [fullWidth]="true">
-                        Lanzar Diálogo
-                    </app-button>
-                    
-                    <div class="flex gap-2">
-                        <app-button variant="secondary" (click)="showSnackbar('Operación exitosa', 'success')" class="flex-1">
-                            Success Toast
-                        </app-button>
-                        <app-button variant="danger" (click)="showSnackbar('Fallo en el servidor', 'error')" class="flex-1">
-                            Error Toast
-                        </app-button>
-                    </div>
-                </div>
-            </app-card>
+      <!-- Interactive Elements -->
+      <div class="flex flex-col gap-8">
+        <app-card title="Diálogos & Feedback" subtitle="Modales y notificaciones">
+          <div class="flex flex-col gap-4">
+            <app-button
+              variant="primary"
+              (click)="openDialog()"
+              icon="open_in_new"
+              [fullWidth]="true"
+            >
+              Lanzar Diálogo
+            </app-button>
 
-            <app-card title="Menú Contextual" subtitle="Opciones desplegables">
-                <button mat-stroked-button [matMenuTriggerFor]="menu" class="!w-full !py-6 !rounded-xl !border-[#1f1f1f] !bg-[#0d0d0d] hover:!bg-[#151515] !text-white">
-                    <mat-icon>menu</mat-icon>
-                    <span class="ml-2">Opciones de Gestión</span>
-                </button>
-                <mat-menu #menu="matMenu">
-                    <button mat-menu-item>
-                        <mat-icon>settings</mat-icon>
-                        <span>Ajustes</span>
-                    </button>
-                    <button mat-menu-item>
-                        <mat-icon>share</mat-icon>
-                        <span>Compartir</span>
-                    </button>
-                    <mat-divider></mat-divider>
-                    <button mat-menu-item class="!text-red-400">
-                        <mat-icon class="!text-red-400">delete</mat-icon>
-                        <span>Eliminar permanentemente</span>
-                    </button>
-                </mat-menu>
-            </app-card>
-        </div>
-
-        <!-- Material Integration -->
-        <app-card title="Integración Material" subtitle="Componentes nativos con estilo Nexus">
-            <div class="space-y-6">
-                <div>
-                   <h3 class="text-[10px] font-bold text-[#707070] uppercase tracking-[0.2em] mb-4">Utility Tooltips</h3>
-                   <div class="flex gap-4">
-                        <button mat-mini-fab color="primary" matTooltip="Añadir nuevo registro" matTooltipPosition="above">
-                            <mat-icon>add</mat-icon>
-                        </button>
-                        <button mat-mini-fab color="accent" matTooltip="Editar información" matTooltipPosition="right">
-                            <mat-icon>edit</mat-icon>
-                        </button>
-                        <button mat-mini-fab class="!bg-red-500/10 !text-red-400 border border-red-500/20" matTooltip="Eliminar" matTooltipPosition="below">
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                   </div>
-                </div>
-
-                <div class="pt-6 border-t border-[#1f1f1f]">
-                    <h3 class="text-[10px] font-bold text-[#707070] uppercase tracking-[0.2em] mb-4">Material Raised Buttons</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <button mat-raised-button color="primary">Primary</button>
-                        <button mat-raised-button color="accent">Accent</button>
-                        <button mat-raised-button color="warn">Warn</button>
-                        <button mat-raised-button disabled>Disabled</button>
-                    </div>
-                </div>
+            <div class="flex gap-2">
+              <app-button
+                variant="secondary"
+                (click)="showSnackbar('Operación exitosa', 'success')"
+                class="flex-1"
+              >
+                Success Toast
+              </app-button>
+              <app-button
+                variant="danger"
+                (click)="showSnackbar('Fallo en el servidor', 'error')"
+                class="flex-1"
+              >
+                Error Toast
+              </app-button>
             </div>
+          </div>
         </app-card>
+
+        <app-card title="Menú Contextual" subtitle="Opciones desplegables">
+          <button
+            mat-stroked-button
+            [matMenuTriggerFor]="menu"
+            class="!w-full !py-6 !rounded-xl !border-[#1f1f1f] !bg-[#0d0d0d] hover:!bg-[#151515] !text-white"
+          >
+            <mat-icon>menu</mat-icon>
+            <span class="ml-2">Opciones de Gestión</span>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <mat-icon>settings</mat-icon>
+              <span>Ajustes</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>share</mat-icon>
+              <span>Compartir</span>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item class="!text-red-400">
+              <mat-icon class="!text-red-400">delete</mat-icon>
+              <span>Eliminar permanentemente</span>
+            </button>
+          </mat-menu>
+        </app-card>
+      </div>
+
+      <!-- Material Integration -->
+      <app-card title="Integración Material" subtitle="Componentes nativos con estilo Nexus">
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-[10px] font-bold text-[#707070] uppercase tracking-[0.2em] mb-4">
+              Utility Tooltips
+            </h3>
+            <div class="flex gap-4">
+              <button
+                mat-mini-fab
+                color="primary"
+                matTooltip="Añadir nuevo registro"
+                matTooltipPosition="above"
+              >
+                <mat-icon>add</mat-icon>
+              </button>
+              <button
+                mat-mini-fab
+                color="accent"
+                matTooltip="Editar información"
+                matTooltipPosition="right"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                mat-mini-fab
+                class="!bg-red-500/10 !text-red-400 border border-red-500/20"
+                matTooltip="Eliminar"
+                matTooltipPosition="below"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+
+          <div class="pt-6 border-t border-[#1f1f1f]">
+            <h3 class="text-[10px] font-bold text-[#707070] uppercase tracking-[0.2em] mb-4">
+              Material Raised Buttons
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              <button mat-raised-button color="primary">Primary</button>
+              <button mat-raised-button color="accent">Accent</button>
+              <button mat-raised-button color="warn">Warn</button>
+              <button mat-raised-button disabled>Disabled</button>
+            </div>
+          </div>
+        </div>
+      </app-card>
     </div>
   </div>
 </div>
-

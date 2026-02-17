@@ -12,7 +12,13 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
-import { CardComponent, ButtonComponent, BadgeComponent } from '../../../shared/components';
+import {
+  CardComponent,
+  ButtonComponent,
+  BadgeComponent,
+  SelectComponent,
+  DatepickerComponent,
+} from '../../../shared/components';
 import { CustomDatePipe } from '../../../shared/pipes/custom-date.pipe';
 import { CurrencyPipe } from '../../../shared/pipes/currency.pipe';
 import {
@@ -59,6 +65,8 @@ interface Category {
     CardComponent,
     ButtonComponent,
     BadgeComponent,
+    SelectComponent,
+    DatepickerComponent,
     CurrencyPipe,
     NumericInputDirective,
     IntegerInputDirective,
@@ -91,7 +99,10 @@ export class FormsDemoPage implements OnInit {
     { id: 6, name: 'Deportes' },
   ];
 
-  constructor(private fb: FormBuilder, private snackBar: MatSnackBar) {
+  constructor(
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar,
+  ) {
     this.mainForm = this.fb.group({
       // Datos personales
       fullName: ['', [Validators.required, textLengthValidator(3, 100)]],

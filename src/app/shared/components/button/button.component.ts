@@ -1,4 +1,12 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ElementRef,
+  AfterContentInit,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,20 +25,30 @@ export type ButtonSize = 'sm' | 'md' | 'lg';
       [class]="getButtonClasses()"
       (click)="handleClick($event)"
     >
-      <mat-icon *ngIf="icon && !loading" [class]="iconPosition === 'left' ? 'mr-2' : 'ml-2'" [class.order-last]="iconPosition === 'right'">
+      <mat-icon *ngIf="icon && !loading" [class.order-last]="iconPosition === 'right'">
         {{ icon }}
       </mat-icon>
-      
-      <svg 
-        *ngIf="loading" 
-        class="animate-spin h-4 w-4" 
-        [class.mr-2]="hasContent"
-        xmlns="http://www.w3.org/2000/svg" 
-        fill="none" 
+
+      <svg
+        *ngIf="loading"
+        class="animate-spin h-4 w-4"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
         viewBox="0 0 24 24"
       >
-        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        <circle
+          class="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          stroke-width="4"
+        ></circle>
+        <path
+          class="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+        ></path>
       </svg>
 
       <ng-content></ng-content>
@@ -38,7 +56,7 @@ export type ButtonSize = 'sm' | 'md' | 'lg';
   `,
   styles: [],
 })
-export class ButtonComponent {
+export class ButtonComponent implements AfterContentInit {
   @Input() variant: ButtonVariant = 'primary';
   @Input() size: ButtonSize = 'md';
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
@@ -50,8 +68,20 @@ export class ButtonComponent {
 
   @Output() onClick = new EventEmitter<Event>();
 
-  get hasContent(): boolean {
-    return true; // Simplified for now
+  hasContent = false;
+  private el = inject(ElementRef);
+
+  ngAfterContentInit() {
+    this.checkContent();
+  }
+
+  private checkContent() {
+    // Verificamos si hay texto o elementos proyectados
+    const nativeElement = this.el.nativeElement;
+    // Buscamos nodos de texto que no sean solo espacios o cualquier elemento que no sea el botón mismo
+    // En este caso, simplemente comprobamos el contenido del componente host
+    const text = nativeElement.textContent?.trim();
+    this.hasContent = !!text;
   }
 
   handleClick(event: Event): void {
@@ -113,12 +143,7 @@ export class ButtonComponent {
         'hover:border-[#3ecf8e]',
         'focus:ring-[#3ecf8e]/50',
       ],
-      ghost: [
-        'bg-transparent',
-        'text-[#f0f0f0]',
-        'hover:bg-[#1f1f1f]',
-        'focus:ring-[#3ecf8e]/50',
-      ],
+      ghost: ['bg-transparent', 'text-[#f0f0f0]', 'hover:bg-[#1f1f1f]', 'focus:ring-[#3ecf8e]/50'],
       danger: [
         'bg-[#ef4444]',
         'text-white',
